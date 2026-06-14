@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immigration Pathways for Survivors & Families</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Typography Plugin for clean text rendering -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <!-- Phosphor Icons (Clean, professional icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- FontAwesome Icons for the Directory -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#111111',
+                            white: '#ffffff',
+                            red: '#cc0000',
+                            darkred: '#990000',
+                            lightgray: '#f9fafb',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for a polished look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cc0000; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #990000; }
+        
+        .nav-link.active {
+            border-bottom: 2px solid #cc0000;
+            color: #cc0000;
+            font-weight: 600;
+        }
+        .page-section { display: none; }
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-brand-lightgray text-brand-black flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <header class="bg-brand-black text-brand-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('home')">
+                    <i class="ph ph-shield-check text-brand-red text-3xl mr-2"></i>
+                    <span class="font-bold text-lg tracking-tight hidden sm:block">Pathways for Survivors</span>
+                </div>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-6 overflow-x-auto">
+                    <button onclick="navigate('home')" class="nav-link active hover:text-brand-red transition py-5">Home</button>
+                    <button onclick="navigate('choose-role')" class="nav-link hover:text-brand-red transition py-5">Choose Your Role</button>
+                    <button onclick="navigate('snapshot')" class="nav-link hover:text-brand-red transition py-5">Pathway Snapshot</button>
+                    <button onclick="navigate('referral-map')" class="nav-link hover:text-brand-red transition py-5 text-gray-400">Referral Map</button>
+                    <button onclick="navigate('docs')" class="nav-link hover:text-brand-red transition py-5 text-gray-400">Documentation</button>
+                    <button onclick="navigate('safety')" class="nav-link hover:text-brand-red transition py-5 text-gray-400">Safety</button>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-white hover:text-brand-red focus:outline-none">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-black border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <button onclick="navigate('home'); toggleMobileMenu()" class="text-left text-white block px-3 py-2 rounded-md font-medium hover:bg-gray-800">Home</button>
+                <button onclick="navigate('choose-role'); toggleMobileMenu()" class="text-left text-white block px-3 py-2 rounded-md font-medium hover:bg-gray-800">Choose Your Role</button>
+                <button onclick="navigate('snapshot'); toggleMobileMenu()" class="text-left text-white block px-3 py-2 rounded-md font-medium hover:bg-gray-800">Pathway Snapshot</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        <!-- ================= HOME SECTION ================= -->
+        <section id="home" class="page-section active">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
+                    Immigration Pathways <span class="text-brand-red block mt-2">for Survivors & Families</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 font-medium">
+                    A practical companion guide for advocates, clinicians, legal partners, healthcare providers, courts, prosecution, and community-based organizations.
+                </p>
+                
+                <div class="bg-white border-l-4 border-brand-red p-6 shadow-sm text-left rounded-r-lg">
+                    <p class="text-gray-700 leading-relaxed italic">
+                        “This resource is designed to help partners connect immigration legal pathways to the work they already do with survivors, families, and community members. It is educational, not legal advice. Immigration law and agency practice change quickly; referrals should be made to qualified immigration legal providers.”
+                    </p>
+                </div>
+            </div>
+
+            <!-- The One Question -->
+            <div class="bg-brand-black text-white rounded-xl p-8 sm:p-10 text-center shadow-xl mb-16 transform transition hover:scale-[1.01]">
+                <h2 class="text-brand-red font-bold tracking-widest uppercase text-sm mb-4">The One Question Every Partner Can Ask</h2>
+                <p class="text-2xl sm:text-3xl font-semibold leading-tight">
+                    “Could immigration status, fear of deportation, document control, or dependence on an abuser be affecting this person’s safety, choices, or ability to seek help?”
+                </p>
+            </div>
+
+            <!-- Role Entry Point -->
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-6">Where does your work intersect?</h2>
+                <button onclick="navigate('choose-role')" class="bg-brand-red hover:bg-brand-darkred text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 flex items-center justify-center mx-auto space-x-2 text-lg">
+                    <span>Select Your Role</span>
+                    <i class="ph ph-arrow-right font-bold"></i>
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ================= CHOOSE YOUR ROLE SECTION ================= -->
+        <section id="choose-role" class="page-section">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-extrabold mb-4">Choose Your Role</h1>
+                <p class="text-xl text-gray-600">Select the role closest to your work to see tailored guidance, red flags, and referral strategies.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Advocate -->
+                <div onclick="navigate('role-advocacy')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-brand-red cursor-pointer transition group">
+                    <div class="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-red transition">
+                        <i class="ph ph-shield text-3xl text-brand-red group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Advocacy & DV/SA Services</h3>
+                    <p class="text-gray-600 text-sm">For FJC partners, DV/SA advocates, hotline workers, and safety planners.</p>
+                </div>
+
+                <!-- Mental Health -->
+                <div onclick="navigate('role-mental-health')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-brand-red cursor-pointer transition group">
+                    <div class="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-red transition">
+                        <i class="ph ph-brain text-3xl text-brand-red group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Mental Health & Trauma</h3>
+                    <p class="text-gray-600 text-sm">For trauma therapists, counselors, and clinical providers.</p>
+                </div>
+
+                <!-- Healthcare -->
+                <div onclick="navigate('role-healthcare')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-brand-red cursor-pointer transition group">
+                    <div class="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-red transition">
+                        <i class="ph ph-first-aid text-3xl text-brand-red group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Healthcare & Hospitals</h3>
+                    <p class="text-gray-600 text-sm">For SANE/SART, emergency departments, doulas, and maternal health.</p>
+                </div>
+
+                <!-- Courts -->
+                <div onclick="navigate('role-courts')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-brand-red cursor-pointer transition group">
+                    <div class="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-red transition">
+                        <i class="ph ph-bank text-3xl text-brand-red group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Courts & Prosecution</h3>
+                    <p class="text-gray-600 text-sm">For prosecutors, victim-witness staff, and justice system partners.</p>
+                </div>
+
+                <!-- Housing -->
+                <div onclick="navigate('role-housing')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-brand-red cursor-pointer transition group">
+                    <div class="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-red transition">
+                        <i class="ph ph-house text-3xl text-brand-red group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Housing & Community</h3>
+                    <p class="text-gray-600 text-sm">For shelter staff, violence intervention, and community organizations.</p>
+                </div>
+
+                <!-- Legal Aid -->
+                <div onclick="navigate('role-legal')" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-brand-red cursor-pointer transition group">
+                    <div class="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-red transition">
+                        <i class="ph ph-scales text-3xl text-brand-red group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Civil Legal Aid & Family Law</h3>
+                    <p class="text-gray-600 text-sm">For family court attorneys, LSNJ, VLJ, and immigration referral partners.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PATHWAY SNAPSHOT SECTION ================= -->
+        <section id="snapshot" class="page-section">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-extrabold mb-4">Pathway Snapshot</h1>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">A quick reference guide to common immigration pathways. Remember, only a qualified immigration attorney should determine eligibility.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-lg shadow-sm border-t-4 border-brand-red p-6">
+                    <h3 class="text-xl font-bold mb-2 flex items-center"><i class="ph ph-users text-brand-red mr-2"></i> Family-Based Petition</h3>
+                    <p class="text-gray-700 text-sm mb-4">Relationship-based, but does not automatically create lawful status.</p>
+                    <div class="bg-gray-50 p-4 rounded text-sm">
+                        <p class="font-semibold mb-1">May be relevant when:</p>
+                        <p class="text-gray-600 mb-3">Married to or child of a U.S. Citizen or Lawful Permanent Resident.</p>
+                        <p class="font-semibold mb-1">Refer when:</p>
+                        <p class="text-gray-600">The abuser threatens to withdraw the petition or controls the paperwork.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-lg shadow-sm border-t-4 border-brand-red p-6">
+                    <h3 class="text-xl font-bold mb-2 flex items-center"><i class="ph ph-hand-fist text-brand-red mr-2"></i> VAWA</h3>
+                    <p class="text-gray-700 text-sm mb-4">For certain abused spouses, children, or parents of USC/LPR abusers.</p>
+                    <div class="bg-gray-50 p-4 rounded text-sm">
+                        <p class="font-semibold mb-1">May be relevant when:</p>
+                        <p class="text-gray-600 mb-3">Experiencing battery or extreme cruelty by a qualifying abusive relative.</p>
+                        <p class="font-semibold mb-1">Refer when:</p>
+                        <p class="text-gray-600">Abuser uses deportation threats, document control, or isolation.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-lg shadow-sm border-t-4 border-brand-red p-6">
+                    <h3 class="text-xl font-bold mb-2 flex items-center"><i class="ph ph-police-car text-brand-red mr-2"></i> U Visa</h3>
+                    <p class="text-gray-700 text-sm mb-4">For victims of qualifying crimes who suffered harm and were helpful to law enforcement/certifying agencies.</p>
+                    <div class="bg-gray-50 p-4 rounded text-sm">
+                        <p class="font-semibold mb-1">May be relevant when:</p>
+                        <p class="text-gray-600 mb-3">Survivor reported DV, sexual assault, felonious assault, or stalking to police/courts.</p>
+                        <p class="font-semibold mb-1">Refer when:</p>
+                        <p class="text-gray-600">Survivor wants to cooperate but is terrified of immigration consequences.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-lg shadow-sm border-t-4 border-brand-red p-6">
+                    <h3 class="text-xl font-bold mb-2 flex items-center"><i class="ph ph-lock-key-open text-brand-red mr-2"></i> T Visa</h3>
+                    <p class="text-gray-700 text-sm mb-4">For certain trafficking survivors.</p>
+                    <div class="bg-gray-50 p-4 rounded text-sm">
+                        <p class="font-semibold mb-1">May be relevant when:</p>
+                        <p class="text-gray-600 mb-3">Signs of forced labor, commercial sex exploitation, force, fraud, or coercion.</p>
+                        <p class="font-semibold mb-1">Refer when:</p>
+                        <p class="text-gray-600">Someone else controls their documents, wages, housing, or threatens their family.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white rounded-lg shadow-sm border-t-4 border-brand-red p-6">
+                    <h3 class="text-xl font-bold mb-2 flex items-center"><i class="ph ph-globe-hemisphere-west text-brand-red mr-2"></i> Asylum</h3>
+                    <p class="text-gray-700 text-sm mb-4">For people afraid to return because of persecution tied to a protected ground.</p>
+                    <div class="bg-gray-50 p-4 rounded text-sm">
+                        <p class="font-semibold mb-1">May be relevant when:</p>
+                        <p class="text-gray-600 mb-3">Fleeing domestic violence, gang violence, or LGBTQ+ harm in their home country.</p>
+                        <p class="font-semibold mb-1">Refer when:</p>
+                        <p class="text-gray-600">Survivor expresses fear of return or has an upcoming 1-year filing deadline/court date.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-white rounded-lg shadow-sm border-t-4 border-brand-red p-6">
+                    <h3 class="text-xl font-bold mb-2 flex items-center"><i class="ph ph-baby text-brand-red mr-2"></i> SIJ</h3>
+                    <p class="text-gray-700 text-sm mb-4">For certain youth needing juvenile-court protection due to abuse, neglect, abandonment, or similar basis.</p>
+                    <div class="bg-gray-50 p-4 rounded text-sm">
+                        <p class="font-semibold mb-1">May be relevant when:</p>
+                        <p class="text-gray-600 mb-3">Child/youth (under 21) is unsafe with one or both parents.</p>
+                        <p class="font-semibold mb-1">Refer when:</p>
+                        <p class="text-gray-600">Youth is entering family court, guardianship, or foster care and risks "aging out."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= ROLE: ADVOCACY ================= -->
+        <section id="role-advocacy" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+            <button onclick="navigate('choose-role')" class="text-brand-red hover:underline mb-6 flex items-center text-sm font-semibold"><i class="ph ph-arrow-left mr-1"></i> Back to Roles</button>
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Advocacy / Family Justice / DV & Sexual Assault Services</h1>
+                <p class="lead">For Family Justice Center partners, domestic violence advocates, sexual assault advocates, hotline workers, case managers, safety planners, and survivor-support staff.</p>
+
+                <h2>Why this matters</h2>
+                <p>Immigration status can affect a survivor’s safety, choices, disclosure, housing, employment, access to court, willingness to report, and ability to leave an abusive situation.</p>
+                <p>Survivors may not say, “I need immigration help.” They may say:</p>
+                <ul>
+                    <li>“My partner said he will get me deported.”</li>
+                    <li>“He has my passport.”</li>
+                    <li>“She said I’ll lose my children if I call the police.”</li>
+                    <li>“I called the police, but now I’m afraid to keep going.”</li>
+                    <li>“I can’t leave because he controls my papers.”</li>
+                    <li>“I don’t know what was filed for me.”</li>
+                    <li>“My spouse promised to fix my papers, but now uses it against me.”</li>
+                </ul>
+                <p>The goal is not for advocates to determine eligibility. The goal is to recognize when immigration may be part of the safety picture and make a safe, informed referral.</p>
+
+                <h2>Core principle</h2>
+                <p><strong>Safety first. Immigration screening second. Warm referral always.</strong></p>
+                <p>Immigration relief can be life-changing, but the first priority is always immediate safety, safe communication, confidentiality, and survivor choice. A legal referral should support the survivor’s safety plan, not pressure them into retelling details before they are ready.</p>
+
+                <h2>What you may hear from a survivor</h2>
+                <p>Survivors may disclose immigration-related abuse directly or indirectly. Listen for statements about control, threats, documents, fear, reporting, work, children, or dependence.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose my-6">
+                    <div class="bg-gray-50 p-4 rounded border-l-4 border-gray-400">
+                        <h4 class="font-bold text-sm uppercase text-gray-500 mb-2">Relationship & Status Control</h4>
+                        <ul class="text-sm text-gray-700 space-y-1 list-disc pl-4">
+                            <li>“My spouse said I have no rights because I’m undocumented.”</li>
+                            <li>“He took me to an attorney, but I don’t know what was filed.”</li>
+                            <li>“My spouse says if I leave, immigration will come for me.”</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border-l-4 border-gray-400">
+                        <h4 class="font-bold text-sm uppercase text-gray-500 mb-2">Document Control</h4>
+                        <ul class="text-sm text-gray-700 space-y-1 list-disc pl-4">
+                            <li>“He keeps my passport.”</li>
+                            <li>“She has my birth certificate and my children’s documents.”</li>
+                            <li>“My work permit expired, and he would not help me renew it.”</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Immigration red flags</h2>
+                <p>These red flags do not prove eligibility. They mean the survivor should be referred for immigration legal screening.</p>
+                <ul>
+                    <li><strong>Possible VAWA red flags:</strong> The abuser is a U.S. citizen or green card holder, controls documents, or uses threats of deportation as coercive control.</li>
+                    <li><strong>Possible U visa red flags:</strong> Police were called, a report was made, or the survivor spoke with prosecutors/CPS regarding qualifying crimes like DV or sexual assault.</li>
+                    <li><strong>Possible T visa red flags:</strong> The survivor was forced to work, their wages were withheld, documents taken, or isolated/controlled by another person.</li>
+                    <li><strong>Possible Asylum red flags:</strong> The survivor says they cannot return home safely due to domestic violence, gang violence, or gender-based harm, and local police did not protect them.</li>
+                    <li><strong>Possible SIJ red flags:</strong> The survivor is under 21, and a parent abused, neglected, or abandoned them, requiring family court intervention.</li>
+                </ul>
+
+                <h2>What not to promise</h2>
+                <ul class="text-red-700 font-medium">
+                    <li>Do not say, “You definitely have a VAWA case.”</li>
+                    <li>Do not say, “You will get a U visa.”</li>
+                    <li>Do not say, “If you cooperate with police, immigration will protect you.”</li>
+                    <li>Do not tell the survivor to file, travel, move, divorce, or ignore immigration notices without legal advice.</li>
+                    <li>Do not contact the abuser to verify facts.</li>
+                </ul>
+
+                <h2>When to refer</h2>
+                <p><strong>Refer immediately if:</strong> The survivor has an immigration court date, ICE check-in, ankle monitor, prior removal order, or deadline. The survivor is a youth nearing age-out. The abuser is threatening deportation or holding documents.</p>
+
+                <div class="bg-brand-lightgray p-6 rounded-lg mt-8 not-prose">
+                    <h3 class="text-lg font-bold mb-3 flex items-center text-brand-black"><i class="ph ph-chat-circle-text text-brand-red mr-2"></i> Warm referral script</h3>
+                    <p class="text-gray-700 italic">“Some of what you shared may affect your safety and your immigration options. I am not an immigration attorney, so I cannot tell you whether you qualify. But I can help connect you to a qualified immigration legal provider who can screen you safely and confidentially. Before I share anything, let’s talk about what information you feel comfortable sharing and what contact method is safe for you.”</p>
+                </div>
+            </article>
+        </section>
+
+
+        <!-- ================= ROLE: MENTAL HEALTH ================= -->
+        <section id="role-mental-health" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+             <button onclick="navigate('choose-role')" class="text-brand-red hover:underline mb-6 flex items-center text-sm font-semibold"><i class="ph ph-arrow-left mr-1"></i> Back to Roles</button>
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Mental Health / Trauma / Counseling Providers</h1>
+                <p class="lead">For trauma therapists, counselors, clinicians, social workers, group facilitators, and behavioral health providers supporting survivors.</p>
+
+                <h2>Why this matters</h2>
+                <p>Mental health and trauma providers often hear details that survivors may not feel safe sharing with police, courts, immigration attorneys, or case managers at first. A survivor may disclose fear, control, shame, memory gaps, nightmares, document control, or threats of deportation long before they understand that those facts may connect to an immigration legal pathway.</p>
+                <p><strong>The role of a clinician is not to decide whether someone qualifies for an immigration benefit. The clinical role is to support healing, reduce retraumatization, document professional observations when appropriate, and help survivors connect safely to qualified legal screening.</strong></p>
+
+                <h2>How trauma affects disclosure</h2>
+                <p>Trauma can affect how, when, and whether a survivor discloses abuse. A survivor may disclose gradually. They may avoid details that feel shameful or emotionally overwhelming. This does not automatically mean the survivor is lying.</p>
+                <p>Many immigration pathways require survivors to tell painful facts clearly and repeatedly. A trauma-informed approach helps professionals avoid assuming that delayed or fragmented disclosure always equals dishonesty.</p>
+
+                <h2>Useful clinical observations</h2>
+                <p>Helpful clinical documentation is specific, neutral, and tied to the provider’s role. Useful observations may include:</p>
+                <ul>
+                    <li>Presenting symptoms (Panic, hypervigilance, dissociation, depression).</li>
+                    <li>Functional impact (Impact on parenting, work, sleep, ability to engage with legal systems).</li>
+                    <li>Client’s reported fear of abuser, trafficker, or return to country of origin.</li>
+                    <li>Client’s reported fear of deportation, court, or government agencies.</li>
+                </ul>
+
+                <h2>How to write support letters without making legal conclusions</h2>
+                <p>A useful clinical support letter should help the legal provider understand the survivor’s trauma, symptoms, treatment, functioning, and barriers to disclosure. It should not try to argue the immigration law.</p>
+                
+                <div class="bg-gray-50 border-l-4 border-gray-400 p-4 not-prose my-6 text-sm text-gray-700">
+                    <p class="font-bold mb-2">Sample Language:</p>
+                    <p><em>“Client reports that her spouse repeatedly threatened to contact immigration authorities if she left the relationship. She reports symptoms including panic, nightmares, difficulty sleeping, and fear of being located by the abuser.”</em></p>
+                    <p class="text-red-700 font-bold mt-3">Avoid:</p>
+                    <p><em>“This client qualifies for VAWA” or “The client was legally trafficked.”</em></p>
+                </div>
+
+                <h2>Trauma-informed referral language</h2>
+                <p>You might say: <em>“You do not have to tell me every detail today. My role is to support you. If immigration status, fear of deportation, or document control is affecting your safety, we can make a referral in a way that protects your privacy.”</em></p>
+            </article>
+        </section>
+
+
+        <!-- ================= ROLE: HEALTHCARE ================= -->
+        <section id="role-healthcare" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+            <button onclick="navigate('choose-role')" class="text-brand-red hover:underline mb-6 flex items-center text-sm font-semibold"><i class="ph ph-arrow-left mr-1"></i> Back to Roles</button>
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Healthcare / Hospitals / Maternal & Child Health</h1>
+                <p class="lead">For hospitals, SANE/SART providers, nurses, physicians, social workers, maternal-child health programs, doulas, and healthcare-based violence intervention teams.</p>
+
+                <h2>Why this matters</h2>
+                <p>Healthcare settings may be one of the first safe places where a survivor discloses abuse, trafficking, reproductive coercion, injury, or immigration-related threats.</p>
+                <p>Medical providers do not need to determine immigration eligibility. Their role is to recognize safety concerns, provide care, document accurately, use safe communication practices, and connect the patient to qualified survivor services and legal screening.</p>
+
+                <h2>Healthcare as a first disclosure point</h2>
+                <p>A patient may enter care for physical injury, strangulation, STI testing, pregnancy care, chronic pain, or child neglect concerns. They may not say "I need immigration help." Instead:</p>
+                <ul>
+                    <li>“My partner won’t let me use birth control.”</li>
+                    <li>“I don’t want police involved because I don’t have papers.”</li>
+                    <li>“They keep my documents and speak for me.”</li>
+                </ul>
+
+                <h2>Private screening and interpreter safety</h2>
+                <p>Screen privately whenever possible. <strong>Do not use the suspected abuser, family member, employer, trafficker, or companion as the interpreter.</strong> Ask the accompanying person to step out for a routine part of care.</p>
+                <p>Normalize the question: <em>“Because violence and stress can affect health, I ask all patients about safety.”</em></p>
+
+                <h2>Documentation that can help later</h2>
+                <p>Accurate medical documentation can become important later. Document the patient’s exact words when relevant, objective injuries, strangulation symptoms, mental health presentation, and whether the patient was seen alone using a qualified interpreter.</p>
+
+                <div class="bg-gray-50 border-l-4 border-gray-400 p-4 not-prose my-6 text-sm text-gray-700">
+                    <p class="font-bold mb-2">Documentation Tips:</p>
+                    <p class="text-green-700 font-bold">Better:</p>
+                    <p><em>“Patient reports that partner keeps her passport and work authorization documents. Patient was interviewed privately using a qualified Spanish interpreter.”</em></p>
+                    <p class="text-red-700 font-bold mt-3">Avoid:</p>
+                    <p><em>“Patient qualifies for a U visa” or “Patient is lying.”</em></p>
+                </div>
+
+                <h2>Before Discharge: Safety, Privacy, and Referral Check</h2>
+                <p>A patient’s discharge plan can either increase safety or unintentionally create risk. Before the patient leaves, pause and ask: <strong>“Could anything we are sending home, printing, scheduling, documenting, or communicating create danger for this patient?”</strong></p>
+                <ul>
+                    <li>Check whether printed materials are safe to take home.</li>
+                    <li>Check patient portal and electronic communication risks (does the abuser monitor texts/emails?).</li>
+                    <li>Confirm safe contact information and safe times to call.</li>
+                </ul>
+            </article>
+        </section>
+
+
+        <!-- ================= ROLE: COURTS ================= -->
+        <section id="role-courts" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+             <button onclick="navigate('choose-role')" class="text-brand-red hover:underline mb-6 flex items-center text-sm font-semibold"><i class="ph ph-arrow-left mr-1"></i> Back to Roles</button>
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Courts / Prosecution / Victim-Witness / Justice Partners</h1>
+                <p class="lead">For prosecutors, victim-witness staff, court staff, family court partners, and criminal justice partners.</p>
+
+                <h2>Why this matters</h2>
+                <p>Justice-system partners may not provide immigration legal advice, but their work can strongly affect whether a survivor can later be screened for immigration relief. Court records, police reports, victim-witness contact, and certification practices may all become part of the larger safety and immigration picture.</p>
+
+                <h2>U visa certification: practical framing</h2>
+                <p>A U visa certification is often misunderstood. It is not a reward. It is not a grant of lawful status. It is a form of documentation from a certifying agency about qualifying criminal activity, victimization, and helpfulness.</p>
+                <div class="bg-brand-black text-white p-6 rounded-lg text-center my-6">
+                    <h3 class="text-brand-red uppercase text-sm font-bold tracking-widest mt-0">Crucial Distinction</h3>
+                    <p class="text-lg font-medium">Certification confirms agency information.<br>USCIS decides immigration eligibility.<br>The survivor still needs legal screening.</p>
+                </div>
+
+                <h2>What “helpfulness” may look like</h2>
+                <p>Helpfulness may include more than testifying at trial. It may include calling 911, reporting the crime, answering questions, or participating in a forensic exam. A survivor’s fear of continued participation due to immigration threats should trigger safety planning, not automatic assumptions about credibility.</p>
+
+                <h2>Why early documentation matters</h2>
+                <p>Immigration legal screening often happens months or years after the original incident. By then, survivors may have moved, fled danger, or entered removal proceedings. Useful justice-system documentation preserves the facts that already exist (e.g., incident dates, docket numbers, evidence of intimidation).</p>
+
+                <h2>Language access & Safe Address</h2>
+                <p>Language access can determine whether a survivor can participate meaningfully. Use qualified interpreters, not children or abusers. Also, justice-system paperwork can sometimes expose safe addresses—always consider confidentiality and safety before recording contact information.</p>
+            </article>
+        </section>
+
+
+        <!-- ================= ROLE: HOUSING ================= -->
+        <section id="role-housing" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+             <button onclick="navigate('choose-role')" class="text-brand-red hover:underline mb-6 flex items-center text-sm font-semibold"><i class="ph ph-arrow-left mr-1"></i> Back to Roles</button>
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Housing / Community-Based / Violence Intervention Partners</h1>
+                <p class="lead">For housing navigators, shelter staff, violence-intervention teams, and community-based organizations.</p>
+
+                <h2>Why this matters</h2>
+                <p>Survivors often disclose through rent, shelter, food, violence intervention, or family crisis—not by saying “I need immigration relief.” They may say: <em>“I can’t go to shelter because I’m undocumented”</em> or <em>“My landlord is asking for papers.”</em></p>
+                <p>Community-based partners are trusted because they are close to where people live. That trust can make them the first safe door.</p>
+
+                <h2>When immigration vulnerability blocks safety</h2>
+                <p>Immigration issues can make it harder to accept help. A survivor may stay in danger because they lack ID, depend on the abuser for housing or sponsorship, or fear the shelter will call immigration. See immigration vulnerability as part of safety planning, not as a separate issue to deal with later.</p>
+
+                <h2>Document control as coercion</h2>
+                <p>If a survivor says, <em>“My partner has my passport”</em> or <em>“I owe money and they said I cannot leave until I pay,”</em> this is a major safety and legal red flag. Document control is a profound tool of abuse and trafficking.</p>
+
+                <h2>What not to promise</h2>
+                <ul>
+                    <li>Do not say that applying for help will never affect immigration.</li>
+                    <li>Do not tell someone to ignore immigration mail or miss court.</li>
+                    <li>Do not ask for immigration documents unless needed for your role and safe to do so.</li>
+                    <li>Do not assume that “undocumented” means “no options.”</li>
+                </ul>
+
+                <h2>Warm referrals from trusted community spaces</h2>
+                <p>A warm referral is safer than a cold handoff. Step 1: Explain the reason for referral. Step 2: Clarify limits. Step 3: Ask consent. Step 4: Confirm safe contact. Step 5: Share only necessary information.</p>
+            </article>
+        </section>
+
+
+        <!-- ================= ROLE: LEGAL AID ================= -->
+        <section id="role-legal" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+             <button onclick="navigate('choose-role')" class="text-brand-red hover:underline mb-6 flex items-center text-sm font-semibold"><i class="ph ph-arrow-left mr-1"></i> Back to Roles</button>
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Civil Legal Aid / Family Law / Immigration Referral Partners</h1>
+                <p class="lead">For civil legal aid providers, family-law attorneys, LSNJ, VLJ, Partners for Women and Justice, and AFSC-type partners.</p>
+
+                <h2>Legal issues rarely travel alone</h2>
+                <p>Survivors rarely experience legal problems in separate boxes. A person may come in for a restraining order, divorce, custody, or housing issue—but the facts may also affect VAWA, U visa, T visa, asylum, SIJ, or removal defense.</p>
+                <p>The role is to spot crossover issues early, avoid harmful advice, preserve useful facts, and refer to qualified immigration legal providers when needed.</p>
+
+                <h2>Family court facts that may affect immigration</h2>
+                <p>Family-law work may preserve facts that later matter for immigration screening. Watch for: Good-faith marriage facts, abuse timeline, threats of deportation, abuser’s immigration status, abandonment by a parent, and safe address issues. Do not shape the family-law case *only* around immigration, but coordinate carefully.</p>
+
+                <h2>SIJ Timing & Removal Proceedings</h2>
+                <p><strong>SIJ is time-sensitive.</strong> A delay in family court, guardianship, or custody may affect whether the youth can be screened or file before aging out.<br>
+                For survivors in removal proceedings (immigration court, ICE check-ins), a delayed cross-referral can be devastating. Refer urgently.</p>
+
+                <h2>Coordination across legal partners</h2>
+                <p>Good coordination can prevent harm. Confirm client consent, clarify who represents the client for which matter, avoid duplicating trauma interviews, and avoid conflicting advice.</p>
+                
+                <div class="bg-gray-50 border-l-4 border-gray-400 p-4 not-prose my-6 text-sm text-gray-700">
+                    <p class="font-bold text-red-700 mb-2">Special Warning: Unauthorized Practice</p>
+                    <p>Survivors may be targeted by notarios, fake attorneys, or providers promising fast work permits. Watch for guaranteed results, high fees for vague filings, or advice to ignore court. Encourage clients to seek qualified legal help.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ================= PLACEHOLDERS ================= -->
+        <section id="referral-map" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200 text-center">
+            <div id="referral-map-content" class="w-full"></div>
+        </section>
+        
+        <!-- ================= DOCUMENTATION SECTION ================= -->
+        <section id="docs" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Documentation Tips</h1>
+                <p class="lead">Templates and best practices for writing safe, effective support letters.</p>
+
+                <h2>Purpose of this page</h2>
+                <p>Support letters can help immigration legal providers understand a survivor’s experience, safety concerns, trauma symptoms, service history, and practical barriers.</p>
+                <p>A strong support letter does not need to sound dramatic. It needs to be accurate, careful, trauma-informed, and limited to the writer’s role. This page is designed for advocates, case managers, clinicians, healthcare providers, legal-services partners, community organizations, and other professionals who may be asked to write a letter or document survivor-related information.</p>
+
+                <div class="bg-brand-black text-white p-6 rounded-lg my-8 shadow-sm">
+                    <h3 class="text-brand-red uppercase text-sm font-bold tracking-widest mt-0 mb-2">Core Rule</h3>
+                    <p class="text-lg font-medium mb-4">Document what you know.<br>Do not decide immigration eligibility.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <div>
+                            <p class="text-gray-400 font-bold mb-2 uppercase">A support letter should not say:</p>
+                            <ul class="space-y-1 list-disc pl-4 text-gray-300">
+                                <li>“This client qualifies for VAWA.”</li>
+                                <li>“This is definitely a U visa case.”</li>
+                                <li>“This person was legally trafficked.”</li>
+                                <li>“This client has a strong asylum claim.”</li>
+                                <li>“This child qualifies for SIJ.”</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 font-bold mb-2 uppercase">Instead, a support letter may say:</p>
+                            <ul class="space-y-1 list-disc pl-4 text-gray-300">
+                                <li>“The client reported…”</li>
+                                <li>“I observed…”</li>
+                                <li>“Our agency provided…”</li>
+                                <li>“The client presented with…”</li>
+                                <li>“The client disclosed/requested…”</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-400 italic text-xs">That distinction protects the survivor, the writer, and the legal provider.</p>
+                </div>
+
+                <h2>What a support letter can do</h2>
+                <p>A support letter may help document:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                    <ul>
+                        <li>The relationship between the survivor and the provider.</li>
+                        <li>The services provided.</li>
+                        <li>The survivor’s reported experiences.</li>
+                        <li>Observed emotional or physical impact.</li>
+                        <li>Safety concerns & trauma symptoms.</li>
+                        <li>Barriers to disclosure.</li>
+                        <li>Language-access needs.</li>
+                        <li>Safe contact concerns.</li>
+                        <li>Document control.</li>
+                        <li>Threats of deportation.</li>
+                    </ul>
+                    <ul>
+                        <li>Fear of reporting or court.</li>
+                        <li>Fear of returning to country of origin.</li>
+                        <li>Housing instability.</li>
+                        <li>Medical concerns.</li>
+                        <li>Child safety concerns.</li>
+                        <li>Trafficking indicators.</li>
+                        <li>Referrals made.</li>
+                    </ul>
+                </div>
+                <p><strong>The letter should stay within the writer’s professional role.</strong></p>
+
+                <h2>What a support letter should not do</h2>
+                <p>A support letter should not:</p>
+                <ul>
+                    <li>Give legal advice or promise immigration results.</li>
+                    <li>Use legal labels outside the writer’s role.</li>
+                    <li>Exaggerate facts or add facts the survivor did not report.</li>
+                    <li>Guess about immigration eligibility.</li>
+                    <li>Diagnose unless the writer is qualified to diagnose.</li>
+                    <li>State that the survivor is “credible” as a legal conclusion.</li>
+                    <li>Argue the whole immigration case.</li>
+                    <li>Include unnecessary graphic details.</li>
+                    <li>Share unsafe addresses or reveal children’s schools or shelter locations unnecessarily.</li>
+                    <li>Attach therapy notes or medical records unless specifically requested, consented to, and safely transmitted.</li>
+                    <li>Pressure a survivor to disclose more than they are ready to share.</li>
+                </ul>
+
+                <h2>Before writing a letter</h2>
+                <p>Before writing, confirm:</p>
+                <ul>
+                    <li>The survivor requested the letter or consented to it.</li>
+                    <li>The survivor understands who will receive it and what information will be included.</li>
+                    <li>The survivor has reviewed the letter when possible.</li>
+                    <li>The letter will not include unsafe addresses or contact information.</li>
+                    <li>The letter will not include unnecessary trauma details.</li>
+                    <li>The letter is being sent through a safe method.</li>
+                    <li>The writer understands their role and limits, and is not making legal conclusions.</li>
+                </ul>
+                <p><em>If there is any doubt, coordinate with the immigration legal provider before sending the letter.</em></p>
+
+                <div class="bg-red-50 border-l-4 border-brand-red p-4 my-6">
+                    <h4 class="text-brand-red font-bold uppercase text-sm mt-0 mb-2">Safe-contact warning</h4>
+                    <p class="text-sm text-gray-800 mb-2">Support letters can create danger if they include unsafe contact information. Before including address, phone, email, workplace, school, shelter, or family information, ask:</p>
+                    <ul class="text-sm text-gray-700 list-disc pl-4 space-y-1 mb-2">
+                        <li>Is this address/phone number/email safe? Can mail be received safely?</li>
+                        <li>Does the abuser monitor the survivor’s phone, email, location, patient portal, mail, or social media?</li>
+                        <li>Could the letter be seen by the abuser? Could it reveal a shelter, school, workplace, or new residence?</li>
+                    </ul>
+                    <p class="text-sm font-bold text-brand-darkred m-0">When in doubt, leave out unsafe contact details and coordinate with the legal provider.</p>
+                </div>
+
+                <h2>Recommended support letter structure</h2>
+                <ol>
+                    <li><strong>Writer identification:</strong> State your name, title, agency, role, and relationship to the survivor.<br><em>Example:</em> “My name is [Name], and I am a [Title] at [Organization]. I have provided [services] to [Client Name] since approximately [date].”</li>
+                    <li><strong>Purpose of the letter:</strong> State why the letter is being written.<br><em>Example:</em> “This letter is provided at the client’s request... I am not providing a legal opinion...”</li>
+                    <li><strong>Service history:</strong> Describe the services provided.<br><em>Example:</em> “Our agency has provided safety planning, crisis support...”</li>
+                    <li><strong>Reported history:</strong> Describe what the survivor reported, using careful language.<br><em>Example:</em> “The client reported that her partner threatened to contact immigration authorities...”</li>
+                    <li><strong>Observations:</strong> Describe what you personally observed.<br><em>Example:</em> “During meetings, the client appeared tearful and anxious...”</li>
+                    <li><strong>Impact:</strong> Explain how the reported experience affected the survivor’s functioning or safety.<br><em>Example:</em> “The client reported that these threats made her afraid to contact police...”</li>
+                    <li><strong>Referrals and support provided:</strong> Describe what your agency did.</li>
+                    <li><strong>Limits:</strong> End with a clear boundary.<br><em>Example:</em> “This letter does not offer a legal conclusion...”</li>
+                </ol>
+
+                <hr class="my-10 border-gray-300">
+
+                <!-- Templates -->
+                <h2 class="text-2xl font-bold mb-6">Letter Templates</h2>
+                
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8 text-sm text-gray-800 font-sans shadow-sm">
+                    <h3 class="mt-0 text-brand-black border-b pb-2">Universal support letter template</h3>
+                    <p>[Date]</p>
+                    <p>To Whom It May Concern:</p>
+                    <p>My name is [Name], and I am a [Title] at [Organization]. I have worked with [Client Name] since approximately [date] in my role as [role].</p>
+                    <p>This letter is provided at the client’s request and with the client’s consent. I am not providing a legal opinion or determining eligibility for any immigration benefit. My role is limited to describing my professional relationship with the client, the services provided, the client’s reported experiences, and my observations within my role.</p>
+                    <p>[Client Name] first contacted our organization on or around [date] seeking support related to [general issue: safety planning, domestic violence, sexual assault, housing instability, trauma support, legal referral, medical care, community support, etc.].</p>
+                    <p>The client reported that [brief factual summary using “reported,” “described,” or “disclosed”]. The client also reported [safety concerns, immigration-related threats, document control, fear of reporting, fear of court, fear of return, trafficking indicators, child safety concerns, etc., if relevant].</p>
+                    <p>During our work together, I observed [neutral observations: tearfulness, fear, anxiety, difficulty discussing events, concern for children, difficulty focusing, visible distress, etc.]. The client reported that these experiences affected [safety, housing, sleep, work, parenting, medical care, ability to report, ability to attend court, ability to engage with services, etc.].</p>
+                    <p>Our organization provided [services: safety planning, crisis counseling, case management, referrals, accompaniment, advocacy, housing support, medical referral, legal referral, language-access support, etc.].</p>
+                    <p>Based on the client’s request and consent, our agency referred the client to [general type of service, not necessarily named organization] for further assistance. This letter is intended only to document the client’s contact with our agency, the services provided, the client’s reported concerns, and my observations within my role.</p>
+                    <p>Sincerely,<br>[Name]<br>[Title]<br>[Organization]<br>[Contact information, if safe and appropriate]</p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8 text-sm text-gray-800 font-sans shadow-sm">
+                    <h3 class="mt-0 text-brand-black border-b pb-2">Advocate / case manager support letter template</h3>
+                    <p>[Date]</p>
+                    <p>To Whom It May Concern:</p>
+                    <p>My name is [Name], and I am a [Title] at [Organization]. I have provided advocacy and case management support to [Client Name] since approximately [date].</p>
+                    <p>This letter is provided at the client’s request and with the client’s consent. I am not providing a legal opinion or determining eligibility for any immigration benefit. My role is limited to describing the client’s contact with our agency, the client’s reported safety concerns, and the services provided.</p>
+                    <p>The client contacted our agency seeking support related to [domestic violence / sexual assault / safety planning / housing instability / family safety / crisis support / other general issue].</p>
+                    <p>The client reported that [abuser/person] [brief description of reported conduct]. The client reported that this included [threats, physical abuse, sexual violence, stalking, financial control, isolation, document control, threats of deportation, threats involving children, etc.].</p>
+                    <p>The client also reported immigration-related safety concerns, including [if applicable: threats to call immigration, control of passport or documents, fear of police/court because of status, fear of returning to country, lack of access to immigration paperwork].</p>
+                    <p>Our agency provided [safety planning, crisis support, referrals, advocacy, hotline support, case management, accompaniment, housing support, etc.]. We also discussed safe contact preferences and referral options.</p>
+                    <p>Throughout our interactions, the client appeared [neutral observations]. The client reported that the situation affected [sleep, housing, work, parenting, ability to seek help, ability to attend appointments, safety, etc.].</p>
+                    <p>This letter does not offer a legal conclusion. It is intended to document the client’s reported experiences and the support provided by our agency.</p>
+                    <p>Sincerely,<br>[Name]<br>[Title]<br>[Organization]</p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8 text-sm text-gray-800 font-sans shadow-sm">
+                    <h3 class="mt-0 text-brand-black border-b pb-2">Mental health / trauma provider support letter template</h3>
+                    <p>[Date]</p>
+                    <p>To Whom It May Concern:</p>
+                    <p>My name is [Name], and I am a [Title / Credentials] at [Organization]. I have provided [therapy/counseling/clinical support/group services] to [Client Name] since approximately [date].</p>
+                    <p>This letter is provided at the client’s request and with the client’s consent. I am not providing a legal opinion or determining eligibility for any immigration benefit. My role is limited to describing my clinical relationship with the client, the client’s reported experiences, clinical presentation, and observations within my professional role.</p>
+                    <p>The client reported experiencing [brief trauma-related history, framed carefully]. The client reported that [brief description of abuse, coercive control, threats, sexual violence, trafficking indicators, fear of return, family violence, etc., if clinically relevant].</p>
+                    <p>The client reported symptoms including [anxiety, depression, nightmares, panic, hypervigilance, difficulty sleeping, avoidance, difficulty concentrating, intrusive memories, fear, tearfulness, dissociation, etc.].</p>
+                    <p>During sessions, I observed [clinical observations]. The client sometimes [became tearful, had difficulty discussing events, appeared anxious, paused frequently, reported memory gaps, avoided certain topics, etc.].</p>
+                    <p>In my clinical opinion, the client’s presentation is consistent with trauma exposure. The client’s symptoms appear to affect [sleep, work, parenting, concentration, relationships, school, safety planning, ability to engage with court/police/legal systems, etc.].</p>
+                    <p>Treatment has focused on [stabilization, safety, coping skills, emotional regulation, trauma processing, psychoeducation, support, referrals, etc.].</p>
+                    <p>This letter does not provide a legal conclusion. It is intended to document clinical contact, reported experiences, symptoms, and observations relevant to the client’s care.</p>
+                    <p>Sincerely,<br>[Name]<br>[Credentials]<br>[Title]<br>[Organization]</p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8 text-sm text-gray-800 font-sans shadow-sm">
+                    <h3 class="mt-0 text-brand-black border-b pb-2">Healthcare provider support letter template</h3>
+                    <p>[Date]</p>
+                    <p>To Whom It May Concern:</p>
+                    <p>My name is [Name], and I am a [Title / Credentials] at [Facility]. I provided medical care to [Patient Name] on or around [date].</p>
+                    <p>This letter is provided at the patient’s request and with the patient’s consent. I am not providing a legal opinion or determining eligibility for any immigration benefit. My role is limited to describing the medical encounter, the patient’s reported history, clinical findings, treatment, and referrals provided.</p>
+                    <p>The patient presented for [general reason for visit]. The patient reported [brief reported history]. The patient reported safety concerns including [fear of returning home, threats, document control, sexual violence, assault, strangulation, trafficking indicators, etc., if applicable].</p>
+                    <p>Clinical findings included [objective findings]. The patient reported symptoms including [pain, trouble sleeping, anxiety, fear, difficulty breathing, headaches, dizziness, injuries, etc., as applicable].</p>
+                    <p>The patient was provided [treatment, testing, forensic care, social work referral, safety resources, follow-up instructions, etc.]. A qualified interpreter was used in [language], if applicable.</p>
+                    <p>The patient was offered referral information and support related to safety and follow-up care.</p>
+                    <p>This letter does not provide a legal conclusion. It is intended only to document the medical encounter, reported history, clinical findings, and services provided.</p>
+                    <p>Sincerely,<br>[Name]<br>[Credentials]<br>[Title]<br>[Facility]</p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8 text-sm text-gray-800 font-sans shadow-sm">
+                    <h3 class="mt-0 text-brand-black border-b pb-2">Community / housing / outreach worker support letter template</h3>
+                    <p>[Date]</p>
+                    <p>To Whom It May Concern:</p>
+                    <p>My name is [Name], and I am a [Title] at [Organization]. I have worked with [Client Name] since approximately [date] in connection with [housing support / community case management / violence intervention / family support / immigrant resource services / outreach services].</p>
+                    <p>This letter is provided at the client’s request and with the client’s consent. I am not providing a legal opinion or determining eligibility for any immigration benefit. My role is limited to describing the client’s contact with our organization, reported needs, safety concerns, and services provided.</p>
+                    <p>The client sought assistance with [housing instability, emergency shelter, rent, utilities, family crisis, safety concerns, document issues, etc.].</p>
+                    <p>The client reported [brief factual summary]. The client also reported [document control, threats of deportation, inability to safely receive mail, fear of returning home, fear of police/court, unsafe housing, exploitation, trafficking indicators, etc., if relevant].</p>
+                    <p>Our organization provided [case management, housing referral, safety planning, community support, referral to survivor services, referral to immigration legal services, etc.].</p>
+                    <p>The client reported that [safety concern] affected their ability to [leave the situation, obtain housing, work, attend court, access services, keep documents safe, receive mail, etc.].</p>
+                    <p>This letter does not provide a legal conclusion. It is intended only to document the client’s contact with our organization, reported concerns, and services provided.</p>
+                    <p>Sincerely,<br>[Name]<br>[Title]<br>[Organization]</p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8 text-sm text-gray-800 font-sans shadow-sm">
+                    <h3 class="mt-0 text-brand-black border-b pb-2">Collateral witness / community support letter template</h3>
+                    <p class="italic text-gray-500 mb-4">This template is for someone who knows the survivor personally, such as a friend, relative, teacher, faith leader, neighbor, coworker, or community member.</p>
+                    <p>[Date]</p>
+                    <p>To Whom It May Concern:</p>
+                    <p>My name is [Name]. I know [Person’s Name] because [explain relationship]. I have known them since approximately [date/year].</p>
+                    <p>I am writing this letter at [Person’s Name]’s request. I am not providing a legal opinion. I am only describing what I personally know, observed, or was told.</p>
+                    <p>I observed [describe what you personally saw or heard]. For example: [injuries, fear, isolation, changes in behavior, abuser’s threats, controlling behavior, police involvement, need for shelter, etc.].</p>
+                    <p>[Person’s Name] told me that [use “told me” for things the survivor reported]. They appeared [afraid, upset, anxious, withdrawn, tearful, etc.] when discussing this.</p>
+                    <p>I also observed that [impact on work, school, parenting, social life, safety, housing, health, etc.].</p>
+                    <p>I am providing this letter to support [Person’s Name] by sharing what I personally know.</p>
+                    <p>Sincerely,<br>[Name]<br>[Contact information, if safe and appropriate]</p>
+                </div>
+                
+                <hr class="my-10 border-gray-300">
+
+                <h2>Language Guidance</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                        <h3 class="text-green-800 mt-0">Language that helps</h3>
+                        <ul class="text-sm text-green-900 space-y-1 list-disc pl-4">
+                            <li>“Client reported/disclosed/described/stated…”</li>
+                            <li>“I observed…”</li>
+                            <li>“Our agency provided…”</li>
+                            <li>“The client appeared/requested/was referred…”</li>
+                            <li>“The client reported fear of/difficulty…”</li>
+                            <li>“The client reported that the abuser threatened…”</li>
+                            <li>“The client reported that another person controlled…”</li>
+                            <li>“Based on my role, I observed…”</li>
+                            <li>“In my clinical opinion / Within my professional role…”</li>
+                            <li>“This letter is not a legal opinion…”</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 p-6 rounded-lg border border-red-200">
+                        <h3 class="text-red-800 mt-0">Language to avoid</h3>
+                        <ul class="text-sm text-red-900 space-y-1 list-disc pl-4">
+                            <li>“Client qualifies for / deserves…”</li>
+                            <li>“Client is credible / definitely telling the truth.”</li>
+                            <li>“Client has a strong case / This proves…”</li>
+                            <li>“This is clearly trafficking / persecution / extreme cruelty.”</li>
+                            <li>“USCIS should approve / The judge should grant…”</li>
+                            <li>“The client will get immigration status.”</li>
+                            <li>“The client refused / failed to leave / chose to stay…”</li>
+                            <li>“The client did not cooperate…”</li>
+                        </ul>
+                        <p class="text-xs text-red-700 mt-3 font-semibold">These phrases can be harmful, judgmental, legally inaccurate, or outside the writer’s role.</p>
+                    </div>
+                </div>
+
+                <h3>Stronger alternatives</h3>
+                <div class="space-y-4">
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="text-sm line-through text-red-600 mb-1">“Client refused to cooperate.”</p>
+                        <p class="text-sm font-semibold text-green-700">Write: “Client reported fear of participating because the abuser threatened retaliation and deportation.”</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="text-sm line-through text-red-600 mb-1">“Client failed to leave the abuser.”</p>
+                        <p class="text-sm font-semibold text-green-700">Write: “Client reported that leaving was difficult because the abuser controlled housing, money, documents, and transportation.”</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="text-sm line-through text-red-600 mb-1">“Client has a strong VAWA case.”</p>
+                        <p class="text-sm font-semibold text-green-700">Write: “Client reported abuse by a spouse who she believes is a lawful permanent resident. The client was referred to immigration legal services for screening.”</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="text-sm line-through text-red-600 mb-1">“Client is credible.”</p>
+                        <p class="text-sm font-semibold text-green-700">Write: “Client’s reports have remained generally consistent during our work together,” or “Client reported these events during multiple sessions,” if accurate.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="text-sm line-through text-red-600 mb-1">“Client was trafficked.”</p>
+                        <p class="text-sm font-semibold text-green-700">Write: “Client reported that another person kept her passport, controlled her movement, required her to work without pay, and threatened harm if she left.”</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="text-sm line-through text-red-600 mb-1">“Client should get asylum.”</p>
+                        <p class="text-sm font-semibold text-green-700">Write: “Client reported fear of returning to her country and was referred for immigration legal screening.”</p>
+                    </div>
+                </div>
+
+                <hr class="my-10 border-gray-300">
+
+                <h2>What to include by pathway</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-sm">
+                    <div>
+                        <h4 class="font-bold">Possible VAWA-related documentation</h4>
+                        <p>Relationship to abuser, marriage/family status, shared residence, reported abuse, threats of deportation, document/financial control, isolation, emotional/physical/sexual abuse, stalking, threats involving children, safety planning.</p>
+                        <p class="text-red-600 font-semibold mt-1">Do not write: “Client qualifies for VAWA.”</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Possible U visa-related documentation</h4>
+                        <p>Type of crime reported, police/prosecutor/court/CPS involvement, victim-witness contact, report numbers, restraining orders, injuries, emotional harm, fear of participating, threats/intimidation after reporting.</p>
+                        <p class="text-red-600 font-semibold mt-1">Do not write: “Client qualifies for a U visa.”</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Possible T visa-related documentation</h4>
+                        <p>Document control, debt bondage, forced labor, commercial sex exploitation, threats, isolation, control of movement/housing/transportation, withholding wages, threats to family, fear of law enforcement, inability to leave, physical/emotional harm.</p>
+                        <p class="text-red-600 font-semibold mt-1">Do not write: “Client was legally trafficked.”</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Possible asylum-related documentation</h4>
+                        <p>Fear of return to country of origin, past harm, threats, family/gang-related harm, domestic/sexual violence abroad, LGBTQ-related harm, political/religious/ethnic harm, failure of authorities to protect, trauma symptoms tied to return, deadlines.</p>
+                        <p class="text-red-600 font-semibold mt-1">Do not write: “Client has asylum.”</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h4 class="font-bold">Possible SIJ-related documentation</h4>
+                        <p>Age, parent-related abuse/neglect/abandonment, family separation, unsafe reunification, parent absence, caregiver relationship, school/mental health impact, child safety concerns, court involvement, custody/guardianship needs, urgency due to age.</p>
+                        <p class="text-red-600 font-semibold mt-1">Do not write: “Child qualifies for SIJ.”</p>
+                    </div>
+                </div>
+
+                <h2>Quick Mini-Templates</h2>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 border border-gray-200 rounded text-sm shadow-sm">
+                        <p class="font-bold mb-2">Mini-template for referral notes</p>
+                        <p>Client is being referred with consent for immigration legal screening. Client reports [general issue]. Client reports immigration-related safety concerns including [threats of deportation / document control / fear of police or court / fear of return / trafficking indicators / pending immigration court / other]. Client’s safe contact method is [safe contact]. Client prefers [language]. Please avoid [unsafe contact method]. Client has [urgent deadline, if any].</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 border border-gray-200 rounded text-sm shadow-sm">
+                        <p class="font-bold mb-2">Mini-template for safe contact note</p>
+                        <p>Client requests safe contact only by [phone/text/email/other] at [time]. Client states that [voicemail/mail/email/patient portal/text] is not safe. Client requests that messages avoid the words [domestic violence/immigration/legal/shelter/police/court/other]. Client states that [person] may monitor [phone/email/mail/location/social media].</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 border border-gray-200 rounded text-sm shadow-sm">
+                        <p class="font-bold mb-2">Mini-template for service confirmation</p>
+                        <p>This letter confirms that [Client Name] received services from [Organization] beginning on or around [date]. Services included [general services]. The client reported safety concerns related to [general issue]. Our organization provided [support/referrals]. This letter is not a legal opinion and does not determine eligibility for any immigration benefit.</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-black text-white p-6 rounded-lg mt-10">
+                    <h3 class="text-brand-red uppercase text-sm font-bold tracking-widest mt-0 mb-2">Final Reminder</h3>
+                    <p class="mb-4">The best support letters are not the longest letters. They are the safest, clearest, most accurate letters.</p>
+                    <p class="font-medium italic">The strongest documentation question is:<br>“Am I documenting useful facts within my role, while protecting the survivor’s safety and avoiding legal conclusions?”</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ================= SAFETY SECTION ================= -->
+        <section id="safety" class="page-section bg-white p-8 sm:p-12 rounded-xl shadow-sm border border-gray-200">
+            <article class="prose prose-red max-w-none prose-h2:border-b prose-h2:pb-2">
+                <h1>Confidentiality & Safety</h1>
+                <p class="lead">Deep dive into technology safety, safe contact protocols, and information-sharing limits.</p>
+
+                <h2>Purpose of this page</h2>
+                <p>Confidentiality is not just a paperwork rule. It is a safety tool.</p>
+                <p>For survivors of domestic violence, sexual assault, stalking, trafficking, coercive control, and immigration-related abuse, the wrong message, document, address, voicemail, email, portal notification, or referral note can create danger. The goal is not to make every provider a privacy lawyer or cybersecurity expert. The goal is to help every partner pause before sharing, sending, storing, printing, or discussing survivor information.</p>
+
+                <div class="bg-brand-black text-white p-6 rounded-lg my-8 shadow-sm text-center">
+                    <h3 class="text-brand-red uppercase text-sm font-bold tracking-widest mt-0 mb-2">Core Principle</h3>
+                    <p class="text-xl font-medium mb-4">Ask before sharing. Confirm before contacting. Limit what you disclose.</p>
+                    <p class="text-lg italic text-gray-300">The safest question is:<br>“Could this communication, document, or disclosure put the survivor at risk if the wrong person saw it?”</p>
+                </div>
+
+                <h2>Why confidentiality matters in immigration work</h2>
+                <p>Immigrant survivors may face overlapping risks. An abuser, trafficker, employer, sponsor, landlord, family member, or community member may use immigration information as a weapon. They may threaten to:</p>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+                    <li>Call immigration or ICE.</li>
+                    <li>Withdraw a petition.</li>
+                    <li>Hide documents or destroy mail.</li>
+                    <li>Monitor phones & track location.</li>
+                    <li>Expose the survivor’s address.</li>
+                    <li>Contact family abroad.</li>
+                    <li>Report the survivor to police, court, or child welfare.</li>
+                    <li>Interfere with legal appointments.</li>
+                </ul>
+                <p>A survivor may avoid help not because they do not want support, but because every system feels searchable, reportable, or dangerous.</p>
+
+                <h2>What information may be sensitive</h2>
+                <p>Personally identifying information is broader than people think. It is not only a person’s name. A combination of details can identify someone, especially in a small community. Treat the following as potentially sensitive:</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 text-sm">
+                    <ul class="mb-0">
+                        <li>Name, address, phone.</li>
+                        <li>Email, date of birth.</li>
+                        <li>Immigration status.</li>
+                        <li>A-number, USCIS receipts.</li>
+                        <li>Immigration court dates.</li>
+                        <li>ICE check-ins.</li>
+                        <li>Safe address / shelter.</li>
+                        <li>Workplace / schools.</li>
+                    </ul>
+                    <ul class="mb-0">
+                        <li>Medical / therapy records.</li>
+                        <li>Police / court orders.</li>
+                        <li>Photos of injuries.</li>
+                        <li>Text messages.</li>
+                        <li>Social media screenshots.</li>
+                        <li>Passport, ID, work permit.</li>
+                        <li>Information about sexual assault or trafficking.</li>
+                    </ul>
+                    <ul class="mb-0">
+                        <li>Information about LGBTQ identity.</li>
+                        <li>Pregnancy details.</li>
+                        <li>Family abroad info.</li>
+                        <li>Cooperation with law enforcement.</li>
+                        <li>Fear of return to country.</li>
+                    </ul>
+                </div>
+                <p class="font-semibold text-brand-darkred mt-4">When in doubt, minimize details.</p>
+
+                <h2>Consent & Information Sharing</h2>
+                <p>Coordination is important, but coordination does not automatically mean open sharing. Before sharing survivor information, confirm that consent is <strong>voluntary, informed, specific, time-limited, and documented.</strong></p>
+                
+                <div class="bg-gray-50 border-l-4 border-gray-400 p-4 my-6 text-sm">
+                    <h4 class="font-bold text-gray-800 mt-0">Release-of-information checklist</h4>
+                    <ul class="list-disc pl-4 space-y-1 mb-0">
+                        <li>The release is written and the survivor understands it.</li>
+                        <li>The release names the person or agency receiving information.</li>
+                        <li>The release describes what information may be shared and the purpose of sharing.</li>
+                        <li>The release has an expiration date or reasonable time limit.</li>
+                        <li>The release is not a blanket permission for everything.</li>
+                        <li>The survivor knows they can limit the scope and revoke permission.</li>
+                        <li>The release does not authorize unsafe disclosure of addresses, shelter location, children’s information, or immigration details unless truly necessary.</li>
+                    </ul>
+                </div>
+
+                <h2>Safe Contact Protocols</h2>
+                <p>Before calling, texting, emailing, mailing, or sending a referral, ask:</p>
+                <ul>
+                    <li>What is the safest way to contact you?</li>
+                    <li>Is it safe to leave a voicemail or text?</li>
+                    <li>Does anyone else access your phone, know your passwords, or check your email?</li>
+                    <li>Does anyone track your location, open your mail, or monitor your social media?</li>
+                    <li>Does anyone receive appointment reminders or have access to family-sharing settings?</li>
+                    <li>What time of day is safest? What words should we avoid in messages?</li>
+                    <li>Should we use a neutral caller ID, subject line, or message?</li>
+                </ul>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                    <div class="bg-white border border-gray-200 shadow-sm p-4 rounded">
+                        <h4 class="font-bold mt-0 text-brand-black">Voicemail safety</h4>
+                        <p class="text-sm">Before leaving voicemail, ask whether it is safe. If safe, keep it neutral: <em>“Hi, this is [Name]. I’m calling to follow up. Please call me back at [number] when you can.”</em> Do not mention domestic violence, immigration, VAWA, U visa, shelter, etc.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 shadow-sm p-4 rounded">
+                        <h4 class="font-bold mt-0 text-brand-black">Email & Portal safety</h4>
+                        <p class="text-sm">Email can be unsafe if the abuser has access to recovery tools or shared devices. Patient portals can expose appointment reminders and billing statements. Always use neutral subject lines like <em>“Follow-up”</em> or <em>“Meeting confirmation.”</em></p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 p-6 rounded-lg my-8">
+                    <h3 class="text-red-800 mt-0 flex items-center"><i class="ph ph-warning-circle text-2xl mr-2"></i> Technology safety red flags</h3>
+                    <p class="text-sm mb-4">Technology may be part of the abuse. Listen for:</p>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-red-900 list-disc pl-4 mb-4">
+                        <li>“He always knows where I am.”</li>
+                        <li>“She reads my messages.”</li>
+                        <li>“He installed something on my phone.”</li>
+                        <li>“She controls the phone plan.”</li>
+                        <li>“He tracks my car.”</li>
+                        <li>“She has my passwords.”</li>
+                        <li>“He gets alerts when I leave.”</li>
+                        <li>“She uses cameras in the home.”</li>
+                    </ul>
+                    <p class="text-sm font-bold text-red-900">A survivor should not be told to immediately turn everything off without a safety plan. Sudden changes can alert an abuser and escalate danger. Consider connecting them with a technology-safety advocate and planning changes carefully.</p>
+                </div>
+
+                <h2>Immigration-specific confidentiality concerns</h2>
+                <p>Immigration information can be especially dangerous. Do not casually share immigration status, pending applications, A-numbers, USCIS receipt numbers, prior removal orders, ICE check-ins, or court dates. A survivor may be harmed if an abuser learns they filed or are considering filing for VAWA, U visa, T visa, asylum, or SIJ.</p>
+                <p><strong>Safe address in immigration referrals:</strong> Never assume the address on a document is safe. Ask if the abuser lives there, checks mail, or uses "informed delivery" emails. Secure a safe mailing address (like an attorney or agency) immediately.</p>
+
+                <h2>Internal information sharing & Documentation</h2>
+                <p>Even within the same organization, survivor information should be limited to staff who need it for service delivery. Case notes should be accurate, role-limited, and safe.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-8">
+                    <div class="bg-gray-50 p-4 rounded border-l-4 border-green-500">
+                        <p class="font-bold text-green-700 mb-1">Safer wording for case notes:</p>
+                        <ul class="space-y-1 list-disc pl-4">
+                            <li>“Client reports that partner monitors phone and requested text contact only between 9 AM and 12 PM.”</li>
+                            <li>“Client reports that mail to home address is unsafe.”</li>
+                            <li>“Client consented to referral for immigration legal screening.”</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded border-l-4 border-red-500">
+                        <p class="font-bold text-red-700 mb-1">Avoid:</p>
+                        <ul class="space-y-1 list-disc pl-4">
+                            <li>“Client is illegal.”</li>
+                            <li>“Client refuses to cooperate.”</li>
+                            <li>“Client is hiding from immigration.”</li>
+                            <li>“Client only wants papers.”</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Helpful Scripts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="font-bold text-sm text-brand-black">Technology safety script</p>
+                        <p class="text-sm italic text-gray-700">“Before we contact you or send anything, I want to check what is safe. Some people have partners, family members, employers, or others who monitor phones, email, mail, location, or online accounts. What is the safest way for us to reach you?”</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="font-bold text-sm text-brand-black">Consent script</p>
+                        <p class="text-sm italic text-gray-700">“Before I share anything with another organization, I want to explain what I would share, why, and who would receive it. You can say yes, no, or limit what gets shared. You do not have to agree to a referral to receive support here.”</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 p-4 rounded shadow-sm">
+                        <p class="font-bold text-sm text-brand-black">Referral script</p>
+                        <p class="text-sm italic text-gray-700">“Some of what you shared may be important for immigration legal screening. I cannot tell you whether you qualify, but I can help connect you to someone qualified. We can share only the minimum information needed, and we can decide together what contact method is safe.”</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-black text-white p-6 rounded-lg mt-10">
+                    <h3 class="text-brand-red uppercase text-sm font-bold tracking-widest mt-0 mb-2">Key Takeaway</h3>
+                    <p class="mb-4">Confidentiality is survivor safety. Every partner should slow down before sharing, sending, storing, printing, or discussing survivor information.</p>
+                    <p class="font-medium italic">The strongest confidentiality question is:<br>“Does this person know exactly what I am about to share, with whom, why, for how long, and through what method — and could that sharing put them at risk?”</p>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black text-brand-white py-8 mt-auto border-t-4 border-brand-red">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400">
+            <!-- Organization Logo -->
+            <div class="flex justify-center mb-6">
+                <img src="https://i.ibb.co/hRnggL6N/e05002dd-cf34-4850-a8a2-97d1c6a09722.png" alt="Pathways Toolkit Logo" class="mx-auto" style="width: 20%; height: auto; min-width: 120px;" />
+            </div>
+            
+            <p class="mb-2 uppercase tracking-wider font-semibold text-gray-300">Important Disclaimer</p>
+            <p class="max-w-3xl mx-auto">
+                Educational resource only. Not legal advice. Do not collect or share sensitive survivor information unless necessary, consented to, and consistent with confidentiality obligations. Information current as of June 2026.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for SPA Navigation -->
+    <script>
+        function navigate(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Update Nav Links Active State (Desktop)
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Simple matching for basic nav
+                if(link.innerText.toLowerCase().replace(' ', '-') === pageId || 
+                   (pageId === 'snapshot' && link.innerText.includes('Snapshot')) ||
+                   (pageId === 'choose-role' && link.innerText.includes('Role'))) {
+                    link.classList.add('active');
+                } else if (pageId === 'home' && link.innerText === 'Home') {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // ================= REFERRAL MAP LOGIC =================
+        let dirState = {
+            searchTerm: '',
+            filterType: 'All',
+            lang: 'en'
+        };
+
+        const dict = {
+            en: {
+                title: "Immigration Legal Referral Directory",
+                subtitle: "New Jersey specific database containing private attorneys, non-profit organizations, and referral services. Informational only; verify availability and fees before giving a referral.",
+                searchPlaceholder: "Search by name, location, or languages (e.g. 'Creole')...",
+                allCategories: "All Categories",
+                privateAttorneys: "Private Attorneys",
+                nonProfits: "Non-Profits",
+                referralServices: "Referral Services",
+                showing: "Showing",
+                results: "results",
+                result: "result",
+                copy: "Copy",
+                email: "Email",
+                website: "Website",
+                noResults: "No results found",
+                tryAdjusting: "Try adjusting your search or filters.",
+                types: { "Private Attorney": "Private Attorney", "Non-Profit": "Non-Profit", "Referral Service": "Referral Service" }
+            },
+            pt: {
+                title: "Diretório de Encaminhamento Jurídico de Imigração",
+                subtitle: "Banco de dados de Nova Jersey contendo advogados particulares, ONGs e serviços de referência. Apenas informativo; verifique a disponibilidade e honorários.",
+                searchPlaceholder: "Pesquisar por nome, local ou idiomas (ex. 'Creole')...",
+                allCategories: "Todas as Categorias",
+                privateAttorneys: "Advogados Particulares",
+                nonProfits: "ONGs",
+                referralServices: "Serviços de Referência",
+                showing: "Mostrando",
+                results: "resultados",
+                result: "resultado",
+                copy: "Copiar",
+                email: "E-mail",
+                website: "Site",
+                noResults: "Nenhum resultado encontrado",
+                tryAdjusting: "Tente ajustar sua pesquisa ou filtros.",
+                types: { "Private Attorney": "Advogado Particular", "Non-Profit": "ONG", "Referral Service": "Serviço de Referência" }
+            },
+            es: {
+                title: "Directorio de Referencia Legal de Inmigración",
+                subtitle: "Base de datos de Nueva Jersey con abogados privados, organizaciones sin fines de lucro y servicios de referencia. Solo informativo; verifique disponibilidad.",
+                searchPlaceholder: "Buscar por nombre, ubicación o idiomas...",
+                allCategories: "Todas las Categorías",
+                privateAttorneys: "Abogados Privados",
+                nonProfits: "Sin Fines de Lucro",
+                referralServices: "Servicios de Referencia",
+                showing: "Mostrando",
+                results: "resultados",
+                result: "resultado",
+                copy: "Copiar",
+                email: "Correo",
+                website: "Sitio Web",
+                noResults: "No se encontraron resultados",
+                tryAdjusting: "Intente ajustar su búsqueda o filtros.",
+                types: { "Private Attorney": "Abogado Privado", "Non-Profit": "Sin Fines de Lucro", "Referral Service": "Servicio de Referencia" }
+            },
+            ht: {
+                title: "Anyè Referans Legal Imigrasyon",
+                subtitle: "Baz done espesifik pou New Jersey ki gen avoka prive, òganizasyon san pwofi, ak sèvis referans. Enfòmasyon sèlman; tcheke disponiblite ak frè yo.",
+                searchPlaceholder: "Chèche pa non, kote, oswa lang...",
+                allCategories: "Tout Kategori",
+                privateAttorneys: "Avoka Prive",
+                nonProfits: "San Pwofi",
+                referralServices: "Sèvis Referans",
+                showing: "Montre",
+                results: "rezilta yo",
+                result: "rezilta",
+                copy: "Kopye",
+                email: "Imèl",
+                website: "Sitwèb",
+                noResults: "Pa jwenn okenn rezilta",
+                tryAdjusting: "Eseye ajiste rechèch ou oswa filtè yo.",
+                types: { "Private Attorney": "Avoka Prive", "Non-Profit": "San Pwofi", "Referral Service": "Sèvis Referans" }
+            }
+        };
+
+        const directoryData = [
+            { id: 1, type: "Private Attorney", name: "Regis Fernandez", org: "", location: "7 Federal Square, Newark, Essex NJ 07102", phone: "973-297-0002", fax: "973-297-0003", languages: "English, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 2, type: "Private Attorney", name: "Robert Frank", org: "Frank & Pollack, LLC", location: "972 Broad Street, Suite 602, Newark, Essex NJ 07102", phone: "973-297-1919", fax: "973-297-1944", languages: "English, Spanish, Portuguese", notes: "No email/website listed", email: "", web: "" },
+            { id: 3, type: "Private Attorney", name: "Alan J. Pollack", org: "Frank & Pollack, LLC", location: "972 Broad Street, Suite 602, Newark, Essex NJ 07102", phone: "973-297-1919", fax: "973-297-1944", languages: "English, Spanish, Portuguese", notes: "No email/website listed", email: "", web: "" },
+            { id: 4, type: "Private Attorney", name: "Carmen V. Carrillo", org: "", location: "24 Commerce St., Suite 1825, Newark, Essex NJ 07102", phone: "973-596-6900", fax: "", languages: "English, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 5, type: "Private Attorney", name: "Mark Parry", org: "", location: "372 Broad Street, Bloomfield NJ 07003", phone: "973-429-2242", fax: "973-429-9174", languages: "English, Russian, Polish, Ukrainian, Hungarian, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 6, type: "Private Attorney", name: "Melinda Basaran", org: "BK Law Firm", location: "1199 Main Ave., Clifton, Passaic NJ 07011", phone: "973-345-8088", fax: "", languages: "English, Turkish, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 7, type: "Private Attorney", name: "Eloisa V. Castillo", org: "", location: "2006 Kennedy Blvd., Suite 201, Union City, Hudson NJ 07087", phone: "201-866-1001", fax: "", languages: "English, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 8, type: "Private Attorney", name: "Michael M. McDonnell", org: "", location: "1139 East Jersey St., Suite 216, Elizabeth, Union NJ 07201", phone: "908-820-0124", fax: "908-469-1249", languages: "English, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 9, type: "Private Attorney", name: "Meaghan Tuohey", org: "The Law Office of Meaghan Tuohey", location: "532 Lafayette Ave., Hawthorne, Passaic NJ 07506", phone: "973-423-5548", fax: "973-720-1490", languages: "English", notes: "No email/website listed", email: "", web: "" },
+            { id: 10, type: "Private Attorney", name: "Anayancy R. Housman", org: "", location: "453 Westminster Avenue, Elizabeth, Union NJ 07208", phone: "908-527-8622", fax: "908-527-0622", languages: "English, Spanish", notes: "NY: 718-442-1111", email: "", web: "" },
+            { id: 11, type: "Private Attorney", name: "Pierre Eloi", org: "", location: "32 North Day Street, Orange NJ 07050", phone: "973-675-2101", fax: "", languages: "French, Creole", notes: "No email/website listed", email: "", web: "" },
+            { id: 12, type: "Private Attorney", name: "Frederic Aurelien", org: "", location: "2053 Woodbridge Avenue, Edison, Middlesex NJ 08817", phone: "888-715-7776", fax: "718-504-4454", languages: "French, Creole", notes: "Alt Phone: 347-623-7314", email: "", web: "" },
+            { id: 13, type: "Private Attorney", name: "Cesar Martin Estela", org: "", location: "24 Commerce Street, Suite 530, Newark, Essex NJ 07102", phone: "973-733-4940", fax: "", languages: "English, Spanish", notes: "Alt Phone: 866-378-3529", email: "", web: "" },
+            { id: 14, type: "Private Attorney", name: "Julie E. Lynwander", org: "", location: "7216 Bergenline Ave., Suite 400, North Bergen, Hudson NJ 07047", phone: "201-295-3008", fax: "", languages: "English, Spanish", notes: "No email/website listed", email: "", web: "" },
+            { id: 15, type: "Private Attorney", name: "Mustafa Cetin", org: "", location: "100 Challenger Rd., 8th Floor, Ridgefield Park, Bergen NJ 07660", phone: "201-957-0909", fax: "", languages: "English, Turkish", notes: "", email: "", web: "www.cetinesq.com" },
+            { id: 16, type: "Private Attorney", name: "Seham Elmalak", org: "", location: "Newark, Essex NJ", phone: "973-370-3014", fax: "", languages: "", notes: "Confirm address", email: "selmalak@elmalaklaw.com", web: "" },
+            { id: 17, type: "Private Attorney", name: "Jessica Chanin", org: "", location: "West Orange, Essex NJ", phone: "973-736-0346", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 18, type: "Private Attorney", name: "Matthew Archambeault", org: "", location: "Haddon Township/Philadelphia", phone: "856-843-8082", fax: "", languages: "", notes: "Alt Phone: 856-843-8027", email: "", web: "" },
+            { id: 19, type: "Private Attorney", name: "Kiomeiry Cespedes", org: "", location: "Trenton, Mercer NJ", phone: "609-241-7111", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 20, type: "Private Attorney", name: "Elsy Segovia", org: "", location: "Ridgefield Park, Bergen NJ", phone: "973-313-5794", fax: "", languages: "", notes: "Confirm address", email: "lawofficeofelsysegovia@gmail.com", web: "" },
+            { id: 21, type: "Private Attorney", name: "Cheryl Lin", org: "", location: "Jersey City, Hudson NJ", phone: "201-565-2437", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 22, type: "Private Attorney", name: "Michelle Alcalde", org: "", location: "Freehold & Red Bank, Monmouth NJ", phone: "732-766-1407", fax: "", languages: "Spanish", notes: "Spanish line: 973-405-1522", email: "m.alcalde@lomacrimmigration.law.com", web: "" },
+            { id: 23, type: "Private Attorney", name: "Susan Roy", org: "", location: "Princeton Junction, Mercer NJ", phone: "609-716-7400", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 24, type: "Private Attorney", name: "Murray Osorio Firm", org: "", location: "Newark, Essex NJ", phone: "862-465-9035", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 25, type: "Private Attorney", name: "Brian O'Neill Firm", org: "", location: "Morristown, Morris NJ", phone: "201-803-2126", fax: "", languages: "Spanish, Russian", notes: "Spanish: 973-978-4355", email: "", web: "" },
+            { id: 26, type: "Private Attorney", name: "Tom Mosley", org: "", location: "Newark, Essex NJ", phone: "973-622-8176", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 27, type: "Private Attorney", name: "Aiello Harris Abate Law Group", org: "", location: "Lyndhurst, Bergen NJ", phone: "551-321-6524", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 28, type: "Private Attorney", name: "Derek A. DeCosmo", org: "", location: "Mount Holly, Burlington NJ", phone: "856-843-4012", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 29, type: "Private Attorney", name: "Edward Shulman", org: "", location: "Elmwood Park, Bergen NJ", phone: "201-381-0088", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 30, type: "Private Attorney", name: "Lisa Kasdan", org: "", location: "Hackensack, Bergen NJ", phone: "201-498-0777", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 31, type: "Private Attorney", name: "Laura Adjangba, P.C.", org: "", location: "Maplewood, Essex NJ", phone: "973-761-4007", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 32, type: "Private Attorney", name: "Elizabeth Trinidad", org: "", location: "Bridgeton, Cumberland NJ", phone: "856-575-0220", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 33, type: "Private Attorney", name: "D'Uva and Miron LLC", org: "", location: "Newark, Essex NJ", phone: "973-643-7750", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 34, type: "Private Attorney", name: "Eric M. Mark", org: "", location: "Newark, Essex NJ", phone: "973-453-2009", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 35, type: "Private Attorney", name: "Flavia Martins", org: "", location: "Newark, Essex NJ", phone: "201-259-6812", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 36, type: "Private Attorney", name: "John Perez", org: "", location: "Newark, Essex NJ", phone: "973-522-1222", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 37, type: "Private Attorney", name: "Sandy M. Morales", org: "", location: "Newark, Essex NJ", phone: "908-477-7887", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 38, type: "Private Attorney", name: "Ingrid Echeverria", org: "", location: "West New York, Hudson NJ", phone: "201-295-8999", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 39, type: "Private Attorney", name: "Rafael Figueroa", org: "", location: "Hoboken, Hudson NJ", phone: "201-861-0500", fax: "", languages: "", notes: "WhatsApp: 201-552-0453", email: "", web: "" },
+            { id: 40, type: "Private Attorney", name: "King English", org: "", location: "Princeton, Mercer NJ", phone: "732-780-3016", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 41, type: "Private Attorney", name: "Jason Scott Camilo", org: "", location: "New Brunswick, Middlesex NJ", phone: "732-640-0606", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 42, type: "Private Attorney", name: "Oscar Barbosa", org: "", location: "New Brunswick, Middlesex NJ", phone: "800-919-9280", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 43, type: "Private Attorney", name: "Ana Raquel Reis", org: "", location: "West Long Branch, Monmouth NJ", phone: "732-982-7573", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 44, type: "Private Attorney", name: "Bastarrika, Soto, Gonzalez", org: "", location: "Woodland Park, Passaic NJ", phone: "973-370-0997", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 45, type: "Private Attorney", name: "Carla Prosper", org: "", location: "Clifton, Passaic NJ", phone: "973-339-9003", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 46, type: "Private Attorney", name: "Sameer Kumar", org: "", location: "Bridgewater, Somerset NJ", phone: "800-674-3506", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 47, type: "Private Attorney", name: "Sodette K-M Plunkett, Esq.", org: "", location: "Elizabeth, Union NJ", phone: "908-629-1120", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 48, type: "Private Attorney", name: "John P. Leschak", org: "", location: "Freehold, Monmouth NJ", phone: "732-333-0806", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 49, type: "Private Attorney", name: "Franklin S. Montero", org: "", location: "Clifton, Passaic NJ", phone: "973-869-5556", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 50, type: "Private Attorney", name: "George F. Mullen", org: "", location: "Somerville, Somerset NJ", phone: "908-725-7022", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 51, type: "Private Attorney", name: "The Diaz Law Firm LLC", org: "", location: "Elizabeth, Union NJ", phone: "908-527-0700", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 52, type: "Private Attorney", name: "Joseph I. Elias", org: "", location: "Summit, Union NJ", phone: "908-376-6633", fax: "", languages: "", notes: "Confirm address", email: "", web: "" },
+            { id: 53, type: "Private Attorney", name: "Bramnick, Grabas & Arnold", org: "", location: "Various locations NJ", phone: "866-845-5571", fax: "", languages: "", notes: "", email: "", web: "" },
+            { id: 54, type: "Non-Profit", name: "American Friends Service Committee (AFSC)", org: "Immigrant Rights Program", location: "89 Market Street, 6th Floor, Newark, Essex NJ 07102", phone: "973-643-1924", fax: "973-643-8924", languages: "English, Spanish, French", notes: "Detained cases: 973-474-9861", email: "", web: "www.afsc.org" },
+            { id: 55, type: "Non-Profit", name: "Catholic Charities Archdiocese Newark", org: "Catholic Charities", location: "976 Broad Street, Newark, Essex NJ 07102", phone: "973-733-3516", fax: "973-733-9631", languages: "Spanish, French, Haitian Creole", notes: "", email: "immigration@ccannj.org", web: "www.ccannj.org" },
+            { id: 56, type: "Non-Profit", name: "Kids In Need of Defense (KIND)", org: "KIND", location: "50 Park Place, Suite 1401, Newark, Essex NJ 07102", phone: "862-304-5680", fax: "862-367-8112", languages: "", notes: "", email: "infonewark@supportkind.org", web: "www.supportkind.org" },
+            { id: 57, type: "Non-Profit", name: "AMFIS", org: "AMFIS", location: "1177 Clinton Avenue, Suite 100, Irvington, Essex NJ 07111", phone: "973-264-1111", fax: "973-264-1183", languages: "", notes: "", email: "amfisinfo@gmail.com", web: "www.amfis.org" },
+            { id: 58, type: "Non-Profit", name: "Legal Services of New Jersey", org: "", location: "P.O. Box 1357, Edison, Middlesex NJ 08818", phone: "732-572-9100 ext. 8782", fax: "732-777-7070", languages: "Interpreters available", notes: "", email: "", web: "www.lsnj.org" },
+            { id: 59, type: "Non-Profit", name: "HIAS (New York)", org: "HIAS", location: "411 Fifth Avenue, Suite 1006, New York NY 10016", phone: "212-613-1341", fax: "", languages: "Spanish, Russian", notes: "", email: "", web: "www.hias.org" },
+            { id: 60, type: "Non-Profit", name: "Camden Center for Law", org: "", location: "126 N. Broadway, Camden, Camden NJ 08102", phone: "856-583-2950", fax: "856-583-2955", languages: "Spanish-speaking staff", notes: "", email: "info@cclsj.org", web: "www.cclsj.org" },
+            { id: 61, type: "Non-Profit", name: "Equal Access Legal Services", org: "", location: "402 Bethlehem Pike, Glenside PA 19038", phone: "267-888-6703", fax: "", languages: "", notes: "", email: "mfc@equalaccesslegal.org", web: "www.equalaccesslegal.org" },
+            { id: 62, type: "Referral Service", name: "NJ Consortium for Immigrant Children", org: "NJCIC", location: "Statewide NJ", phone: "201-305-9217", fax: "", languages: "Spanish, Portuguese", notes: "", email: "uacscreening@njcic.org", web: "www.njcic.org" },
+            { id: 63, type: "Referral Service", name: "Human Rights First", org: "", location: "75 Broad Street, 31st Floor, New York NY 10004", phone: "917-320-9601", fax: "", languages: "Spanish, French, Arabic", notes: "Confirm address", email: "", web: "www.humanrightsfirst.org" },
+            { id: 64, type: "Referral Service", name: "ABA Detention and LOP", org: "ABA Commission on Immigration", location: "Address not provided", phone: "", fax: "", languages: "", notes: "Confirm address", email: "immcenter@americanbar.org", web: "americanbar.org" }
+        ];
+
+        const stats = {
+            total: directoryData.length,
+            private: directoryData.filter(d => d.type === "Private Attorney").length,
+            nonProfit: directoryData.filter(d => d.type === "Non-Profit").length,
+            referral: directoryData.filter(d => d.type === "Referral Service").length
+        };
+
+        window.copyToClipboard = (text) => { navigator.clipboard.writeText(text); };
+        window.updateSearch = (val) => { dirState.searchTerm = val; renderReferralMap(); };
+        window.updateFilter = (val) => { dirState.filterType = val; renderReferralMap(); };
+        window.updateLang = (val) => { dirState.lang = val; renderReferralMap(); };
+
+        const getTypeColor = (type) => {
+            switch(type) {
+                case 'Private Attorney': return 'bg-blue-100 text-blue-800 border-blue-200';
+                case 'Non-Profit': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                case 'Referral Service': return 'bg-purple-100 text-purple-800 border-purple-200';
+                default: return 'bg-gray-100 text-gray-800 border-gray-200';
+            }
+        };
+
+        function renderReferralMap() {
+            const t = dict[dirState.lang];
+            const container = document.getElementById('referral-map-content');
+            if(!container) return;
+
+            const filteredData = directoryData.filter(item => {
+                const searchLower = dirState.searchTerm.toLowerCase();
+                const matchesSearch = 
+                    item.name.toLowerCase().includes(searchLower) ||
+                    item.org.toLowerCase().includes(searchLower) ||
+                    item.location.toLowerCase().includes(searchLower) ||
+                    item.languages.toLowerCase().includes(searchLower);
+                
+                const matchesType = dirState.filterType === 'All' || item.type === dirState.filterType;
+                return matchesSearch && matchesType;
+            });
+
+            const cardsHTML = filteredData.map(item => `
+                <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col text-left">
+                    <div class="p-5 border-b border-gray-100 flex-1">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full border ${getTypeColor(item.type)}">
+                                ${t.types[item.type]}
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 leading-tight mb-1">${item.name}</h3>
+                        ${item.org ? `<p class="text-sm text-gray-600 font-medium mb-3 flex items-center gap-1.5"><i class="fa-solid fa-building w-4"></i> ${item.org}</p>` : ''}
+                        
+                        <div class="space-y-2 mt-4 text-sm text-gray-600">
+                            ${item.location ? `
+                                <div class="flex items-start gap-2">
+                                    <i class="fa-solid fa-map-pin text-gray-400 mt-0.5"></i>
+                                    <span>${item.location}</span>
+                                </div>
+                            ` : ''}
+                            ${item.languages ? `
+                                <div class="flex items-start gap-2">
+                                    <i class="fa-solid fa-globe text-gray-400 mt-0.5"></i>
+                                    <span class="font-medium text-gray-800">${item.languages}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 border-t border-gray-100 flex flex-col gap-2 text-sm">
+                        ${item.phone ? `
+                            <button onclick="copyToClipboard('${item.phone}')" class="flex items-center justify-between w-full bg-white border border-gray-200 hover:border-brand-red hover:text-brand-red hover:bg-red-50 px-3 py-2 rounded-lg transition-colors group" title="Click to copy">
+                                <div class="flex items-center gap-2 font-medium text-gray-700 group-hover:text-brand-red">
+                                    <i class="fa-solid fa-phone"></i> ${item.phone}
+                                </div>
+                                <span class="text-xs text-gray-400 group-hover:text-brand-red opacity-0 group-hover:opacity-100 transition-opacity">${t.copy}</span>
+                            </button>
+                        ` : ''}
+                        
+                        <div class="flex flex-wrap gap-2 mt-1">
+                            ${item.email ? `
+                                <a href="mailto:${item.email.trim()}" class="flex items-center gap-1 text-xs text-gray-600 hover:text-brand-red bg-white border border-gray-200 px-2 py-1 rounded">
+                                    <i class="fa-solid fa-envelope"></i> ${t.email}
+                                </a>
+                            ` : ''}
+                            ${item.web ? `
+                                <a href="https://${item.web.replace('https://', '').replace('http://', '')}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs text-gray-600 hover:text-brand-red bg-white border border-gray-200 px-2 py-1 rounded">
+                                    <i class="fa-solid fa-globe"></i> ${t.website}
+                                </a>
+                            ` : ''}
+                        </div>
+
+                        ${item.notes ? `
+                            <div class="mt-2 flex items-start gap-1.5 text-xs text-gray-500 bg-gray-200 p-2 rounded">
+                                <i class="fa-solid fa-circle-info mt-0.5"></i>
+                                <span>${item.notes}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            const emptyHTML = filteredData.length === 0 ? `
+                <div class="col-span-full py-12 text-center bg-white rounded-xl border border-gray-200 border-dashed">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-magnifying-glass text-2xl text-gray-400"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-1">${t.noResults}</h3>
+                    <p class="text-gray-500">${t.tryAdjusting}</p>
+                </div>
+            ` : '';
+
+            container.innerHTML = `
+                <div class="mb-8 flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-gray-200 pb-6">
+                    <div class="text-left">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-black mb-2">${t.title}</h2>
+                        <p class="text-gray-600 text-sm sm:text-base max-w-2xl">${t.subtitle}</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="updateLang('en')" class="px-3 py-1.5 text-xs font-semibold rounded transition ${dirState.lang === 'en' ? 'bg-brand-red text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}">EN</button>
+                        <button onclick="updateLang('pt')" class="px-3 py-1.5 text-xs font-semibold rounded transition ${dirState.lang === 'pt' ? 'bg-brand-red text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}">PT</button>
+                        <button onclick="updateLang('es')" class="px-3 py-1.5 text-xs font-semibold rounded transition ${dirState.lang === 'es' ? 'bg-brand-red text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}">ES</button>
+                        <button onclick="updateLang('ht')" class="px-3 py-1.5 text-xs font-semibold rounded transition ${dirState.lang === 'ht' ? 'bg-brand-red text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}">HT</button>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200 text-left">
+                    <div class="flex-1 relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input 
+                            type="text" 
+                            placeholder="${t.searchPlaceholder}"
+                            class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red transition-colors text-sm"
+                            value="${dirState.searchTerm}"
+                            oninput="updateSearch(this.value)"
+                        />
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-gray-400 ml-2 md:ml-0"></i>
+                        <select 
+                            class="py-3 px-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-red cursor-pointer text-sm w-full md:w-auto"
+                            onchange="updateFilter(this.value)"
+                        >
+                            <option value="All" ${dirState.filterType === 'All' ? 'selected' : ''}>${t.allCategories} (${stats.total})</option>
+                            <option value="Private Attorney" ${dirState.filterType === 'Private Attorney' ? 'selected' : ''}>${t.types['Private Attorney']} (${stats.private})</option>
+                            <option value="Non-Profit" ${dirState.filterType === 'Non-Profit' ? 'selected' : ''}>${t.types['Non-Profit']} (${stats.nonProfit})</option>
+                            <option value="Referral Service" ${dirState.filterType === 'Referral Service' ? 'selected' : ''}>${t.types['Referral Service']} (${stats.referral})</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6 flex justify-between items-center text-sm text-gray-500 font-medium">
+                    <p>${t.showing} ${filteredData.length} ${filteredData.length === 1 ? t.result : t.results}</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${cardsHTML}
+                    ${emptyHTML}
+                </div>
+            `;
+        }
+
+        // Initialize the directory on load
+        renderReferralMap();
+
+    </script>
+</body>
+</html>
